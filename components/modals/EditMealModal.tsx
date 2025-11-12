@@ -74,12 +74,12 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
-        className="w-[400px] h-auto max-h-[90vh] overflow-y-auto"
+        className="max-w-md max-h-[90vh] overflow-y-auto"
         showCloseButton={false}
       >
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-[#FF9A0E] text-center flex items-center justify-center gap-2">
-            Edit Meal
+            Edit Food
           </DialogTitle>
         </DialogHeader>
 
@@ -110,12 +110,15 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                   value={values.food_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-name-error"
+                  data-testid="food-name-input"
                 />
                 <div className="h-5">
                   <ErrorMessage
                     name="food_name"
                     component="div"
+                    id="food-name-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -129,18 +132,21 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                   id="food_rating"
                   name="food_rating"
                   type="number"
-                  placeholder="Enter food rating (1-5)"
+                  placeholder="Food rating (1-5)"
                   value={values.food_rating}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   min="1"
                   max="5"
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-rating-error"
+                  data-testid="food-rating-input"
                 />
                 <div className="h-5">
                   <ErrorMessage
                     name="food_rating"
                     component="div"
+                    id="food-rating-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -153,16 +159,19 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                 <Input
                   id="food_image"
                   name="food_image"
-                  placeholder="Enter food image URL"
+                  placeholder="Food image URL"
                   value={values.food_image}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-image-error"
+                  data-testid="food-image-input"
                 />
                 <div className="h-5">
                   <ErrorMessage
                     name="food_image"
                     component="div"
+                    id="food-image-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -178,16 +187,19 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                 <Input
                   id="restaurant_name"
                   name="restaurant_name"
-                  placeholder="Enter restaurant name"
+                  placeholder="Restaurant name"
                   value={values.restaurant_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="restaurant-name-error"
+                  data-testid="restaurant-name-input"
                 />
                 <div className="h-5">
                   <ErrorMessage
                     name="restaurant_name"
                     component="div"
+                    id="restaurant-name-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -203,16 +215,19 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                 <Input
                   id="restaurant_logo"
                   name="restaurant_logo"
-                  placeholder="Enter restaurant logo URL"
+                  placeholder="Restaurant logo URL"
                   value={values.restaurant_logo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="restaurant-logo-error"
+                  data-testid="restaurant-logo-input"
                 />
                 <div className="h-5">
                   <ErrorMessage
                     name="restaurant_logo"
                     component="div"
+                    id="restaurant-logo-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -231,7 +246,12 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                     setFieldValue("restaurant_status", value)
                   }
                 >
-                  <SelectTrigger id="restaurant_status" className="w-full">
+                  <SelectTrigger 
+                    id="restaurant_status" 
+                    className="w-full food-input"
+                    aria-describedby="restaurant-status-error"
+                    data-testid="restaurant-status-select"
+                  >
                     <SelectValue placeholder="Restaurant status" />
                   </SelectTrigger>
                   <SelectContent>
@@ -243,6 +263,7 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                   <ErrorMessage
                     name="restaurant_status"
                     component="div"
+                    id="restaurant-status-error"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
@@ -252,18 +273,20 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                 <Button
                   type="submit"
                   disabled={updateMutation.isPending}
-                  className="w-1/2 text-white font-medium py-3"
+                  className="w-1/2 text-white font-medium py-3 food-btn"
                   style={{
                     background:
                       "linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%)",
                   }}
+                  data-testid="food-save-btn"
                 >
                   {updateMutation.isPending ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Updating Food...
                     </>
                   ) : (
-                    "Update Meal"
+                    "Save"
                   )}
                 </Button>
                 <DialogClose asChild>
@@ -271,7 +294,8 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
                     type="button"
                     variant="outline"
                     disabled={updateMutation.isPending}
-                    className="w-1/2 py-3"
+                    className="w-1/2 py-3 food-btn"
+                    data-testid="food-cancel-btn"
                   >
                     Cancel
                   </Button>
