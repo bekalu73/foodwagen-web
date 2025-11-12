@@ -6,6 +6,7 @@ import Header from "@/features/shared/Header";
 import Footer from "@/features/shared/Footer";
 import AuthProvider from "@/provider/session-provider";
 import QueryProvider from "@/provider/query-provider";
+import { Toaster } from "sonner";
 
 const sourceSansPro = Source_Sans_3({
   variable: "--font-Source_Sans_3",
@@ -28,6 +29,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <Toaster position="top-right" richColors />
           </QueryProvider>
         </AuthProvider>
       </body>

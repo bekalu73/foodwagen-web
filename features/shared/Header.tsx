@@ -1,6 +1,7 @@
+"use client";
 import LogoIcon from "@/components/icons/logo-icon";
 import { Button } from "@/components/ui/button";
-import React from "react";
+import AddMealModal from "@/components/modals/AddMealModal";
 
 const Header = () => {
   return (
@@ -12,7 +13,8 @@ const Header = () => {
           <span className="text-[#FFA833]">Wagen</span>
         </span>
       </div>
-      <Button className="food-gradient text-white btn-shadow">Add Meal</Button>
+      
+      <AddMealModal />
     </div>
   );
 };
