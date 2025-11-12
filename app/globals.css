@@ -142,4 +142,67 @@
   .hero-height {
     height: calc(100vh - 80px);
   }
+
+  /* Food-prefixed classes */
+  .food-card {
+    @apply bg-white rounded-2xl border border-gray-100 overflow-hidden cursor-pointer;
+    animation: slideUp 300ms ease-out;
+  }
+
+  .food-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: all 150ms ease-out;
+  }
+
+  .food-name {
+    @apply font-medium text-gray-900 text-sm;
+  }
+
+  .food-price {
+    @apply flex items-center gap-1;
+  }
+
+  .food-rating {
+    @apply flex items-center gap-1;
+  }
+
+  .restaurant-name {
+    @apply font-medium text-gray-900 text-sm;
+  }
+
+  .restaurant-status {
+    @apply font-medium px-3 py-1 rounded-2xl text-xs;
+  }
+
+  .restaurant-logo {
+    @apply w-10 h-10 rounded-full object-cover bg-gray-100;
+  }
+
+  .food-input {
+    @apply bg-[#F5F5F5];
+  }
+
+  .food-btn {
+    @apply px-6 py-3 rounded-lg font-medium cursor-pointer;
+  }
+
+  .food-item {
+    @apply transition-all duration-150 ease-out cursor-pointer;
+  }
+
+  .empty-state-message {
+    @apply text-center text-gray-500 py-12;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
