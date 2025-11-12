@@ -87,7 +87,7 @@ const FoodHero = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="flex flex-1 py-2 items-center bg-[#F5F5F5] rounded-lg overflow-hidden">
-                <div className="flex items-center px-3 py-2 gap-2 flex-1">
+                <div className="flex items-center px-3  gap-2 flex-1">
                   <Search className="w-5 h-5 text-[#F17228]" />
                   <Input
                     type="text"
