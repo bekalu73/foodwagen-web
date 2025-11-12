@@ -47,14 +47,30 @@ export const useFetchData = (
     queryKey: queryKey,
     queryFn: async () => {
       try {
+        // Validate URL to prevent SSRF
+        if (!url || typeof url !== 'string') {
+          throw new Error('Invalid URL provided');
+        }
+        
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        if (!baseUrl) {
+          throw new Error('API URL not configured');
+        }
+        
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}${url}`,
-          { headers: headers ?? header }
+          `${baseUrl}${url}`,
+          { 
+            headers: headers ?? header,
+            timeout: 10000 // 10 second timeout
+          }
         );
         return response.data;
       } catch (error: any) {
-        if (error?.response?.data?.message)
-          toast.error(error?.response?.data?.message);
+        console.error('API fetch failed:', error);
+        if (error?.response?.data?.message) {
+          toast.error(error.response.data.message);
+        }
+        throw error;
       }
     },
     placeholderData: (previousData) => previousData,

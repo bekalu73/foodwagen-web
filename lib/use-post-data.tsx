@@ -35,16 +35,28 @@ const useDynamicMutation = ({
         onDownloadProgress,
       } = options;
       try {
+        // Validate URL to prevent SSRF
+        if (!url || typeof url !== 'string') {
+          throw new Error('Invalid URL provided');
+        }
+        
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+        if (!baseUrl) {
+          throw new Error('API URL not configured');
+        }
+        
         const response = await axios.request({
-          url: `${process.env.NEXT_PUBLIC_API_URL}${url}`,
+          url: `${baseUrl}${url}`,
           method,
           headers: { ...header },
           data: body,
           onUploadProgress,
           onDownloadProgress,
+          timeout: 10000, // 10 second timeout
         });
         return response.data;
       } catch (error) {
+        console.error('API request failed:', error);
         throw error;
       }
     },
