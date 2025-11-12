@@ -91,11 +91,13 @@ const FoodHero = () => {
                   <Search className="w-5 h-5 text-[#F17228]" />
                   <Input
                     type="text"
-                    placeholder="What do you like to eat today?"
+                    placeholder="Search for food items"
                     value={searchValue}
                     onChange={(e) => setSearchValue(e.target.value)}
                     onKeyDown={handleKeyPress}
-                    className="flex-1 bg-[#F5F5F5] border-none outline-none text-gray-700 focus-visible:ring-0"
+                    className="flex-1 food-input border-none outline-none text-gray-700 focus-visible:ring-0"
+                    data-testid="food-search-input"
+                    name="food_search"
                   />
                 </div>
               </div>
@@ -103,18 +105,19 @@ const FoodHero = () => {
               <Button
                 onClick={handleSearch}
                 disabled={getFood.isFetching}
-                className="px-4 py-6 text-white rounded-md flex items-center gap-2"
+                className="px-4 py-6 text-white rounded-md flex items-center gap-2 food-btn cursor-pointer"
                 style={{
                   background:
                     "linear-gradient(95.71deg, #FF7A7A -39.64%, #F75900 135.31%)",
                 }}
+                data-testid="food-search-btn"
               >
                 {getFood.isFetching ? (
                   <Loader2 className="w-5 h-5 text-white animate-spin" />
                 ) : (
                   <Search className="w-5 h-5 text-white" />
                 )}
-                Find Meal
+                Search Food
               </Button>
             </div>
           </div>
