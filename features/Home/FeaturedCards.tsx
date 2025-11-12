@@ -1,27 +1,25 @@
 "use client";
+import DeleteMealModal from "@/components/modals/DeleteMealModal";
+import EditMealModal from "@/components/modals/EditMealModal";
 import { Button } from "@/components/ui/button";
-import { queryKeys } from "@/lib/query-keys";
-import { useFetchData } from "@/lib/use-fetch-data";
-import { FoodItem } from "@/types/food";
-import {
-  ChevronRight,
-  DollarSign,
-  Edit,
-  MoreVertical,
-  Star,
-  TagIcon,
-  Trash2,
-} from "lucide-react";
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import EditMealModal from "@/components/modals/EditMealModal";
-import DeleteMealModal from "@/components/modals/DeleteMealModal";
+import { queryKeys } from "@/lib/query-keys";
+import { useFetchData } from "@/lib/use-fetch-data";
+import { FoodItem } from "@/types/food";
+import {
+  ChevronRight,
+  DollarSign,
+  MoreVertical,
+  Star,
+  TagIcon,
+} from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const FeaturedCards = () => {
   const [displayCount, setDisplayCount] = useState(8);
@@ -145,14 +143,14 @@ const FeaturedCards = () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem onClick={() => setEditMeal(item)}>
-                      <Edit className="w-4 h-4 mr-2" />
+                      {/* <Edit className="w-4 h-4 mr-2" /> */}
                       Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem 
+                    <DropdownMenuItem
                       onClick={() => setDeleteMeal(item)}
                       className="text-red-600 focus:text-red-600"
                     >
-                      <Trash2 className="w-4 h-4 mr-2" />
+                      {/* <Trash2 className="w-4 h-4 mr-2" /> */}
                       Delete
                     </DropdownMenuItem>
                   </DropdownMenuContent>
