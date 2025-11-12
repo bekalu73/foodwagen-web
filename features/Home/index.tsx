@@ -1,8 +1,11 @@
-import { Button } from "@/components/ui/button";
-import React from "react";
+import FoodHero from "./Hero";
 
 const HomePage = () => {
-  return <Button>Click me</Button>;
+  return (
+    <div>
+      <FoodHero />
+    </div>
+  );
 };
 
 export default HomePage;
