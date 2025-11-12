@@ -98,8 +98,8 @@ const LogoIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
           y2="16.9881"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FFD16D" />
-          <stop offset="1" stop-color="#FF7A00" />
+          <stop stopColor="#FFD16D" />
+          <stop offset="1" stopColor="#FF7A00" />
         </linearGradient>
       </defs>
     </svg>

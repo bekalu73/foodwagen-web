@@ -4,6 +4,8 @@ import "./globals.css";
 import { metaObject } from "@/config/site-config";
 import Header from "@/features/shared/Header";
 import Footer from "@/features/shared/Footer";
+import AuthProvider from "@/provider/session-provider";
+import QueryProvider from "@/provider/query-provider";
 
 const sourceSansPro = Source_Sans_3({
   variable: "--font-Source_Sans_3",
@@ -21,9 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${sourceSansPro.variable} font-sans antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <QueryProvider>
+            <Header />
+            {children}
+            <Footer />
+          </QueryProvider>
+        </AuthProvider>
       </body>
     </html>
   );

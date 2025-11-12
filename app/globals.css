@@ -134,8 +134,12 @@
   .flex-between {
     @apply flex items-center justify-between;
   }
-  
+
   .btn-shadow {
-    box-shadow: 0px 20px 40px 0px #FFAE004A, 0px 5px 10px 0px #FFAE0042;
+    box-shadow: 0px 20px 40px 0px #ffae004a, 0px 5px 10px 0px #ffae0042;
+  }
+
+  .hero-height {
+    height: calc(100vh - 80px);
   }
 }
