@@ -1,13 +1,20 @@
 import * as Yup from "yup";
 
 export const addMealSchema = Yup.object().shape({
-  food_name: Yup.string().required("Food name is required"),
+  food_name: Yup.string().required("Food Name is required"),
   food_rating: Yup.number()
-    .min(1, "Rating must be at least 1")
-    .max(5, "Rating must be at most 5")
-    .required("Rating is required"),
-  food_image: Yup.string().url("Must be a valid URL").required("Food image is required"),
-  restaurant_name: Yup.string().required("Restaurant name is required"),
-  restaurant_logo: Yup.string().url("Must be a valid URL").required("Restaurant logo is required"),
-  restaurant_status: Yup.string().oneOf(["Open Now", "Closed"]).required("Status is required"),
+    .typeError("Food Rating must be a number")
+    .min(1, "Food Rating must be between 1-5")
+    .max(5, "Food Rating must be between 1-5")
+    .required("Food Rating is required"),
+  food_image: Yup.string()
+    .url("Food Image URL must be a valid URL")
+    .required("Food Image URL is required"),
+  restaurant_name: Yup.string().required("Restaurant Name is required"),
+  restaurant_logo: Yup.string()
+    .url("Restaurant Logo URL must be a valid URL")
+    .required("Restaurant Logo URL is required"),
+  restaurant_status: Yup.string()
+    .oneOf(["Open Now", "Closed"], "Restaurant Status must be 'Open Now' or 'Closed'")
+    .required("Restaurant Status is required"),
 });
