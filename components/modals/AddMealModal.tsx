@@ -70,8 +70,11 @@ const AddMealModal = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="food-gradient text-white btn-shadow">
-          Add Meal
+        <Button
+          className="food-gradient text-white btn-shadow cursor-pointer"
+          data-testid="food-add-btn"
+        >
+          Add Food
         </Button>
       </DialogTrigger>
       <DialogContent
@@ -99,97 +102,140 @@ const AddMealModal = () => {
           {({ values, handleChange, handleBlur, setFieldValue }) => (
             <Form className="flex flex-col space-y-4">
               <div>
+                <label htmlFor="food_name" className="sr-only">
+                  Food Name
+                </label>
                 <Input
+                  id="food_name"
                   name="food_name"
                   placeholder="Enter food name"
                   value={values.food_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-name-error"
+                  data-testid="food-name-input"
                 />
                 <ErrorMessage
                   name="food_name"
                   component="div"
+                  id="food-name-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
 
               <div>
+                <label htmlFor="food_rating" className="sr-only">
+                  Food Rating
+                </label>
                 <Input
+                  id="food_rating"
                   name="food_rating"
                   type="number"
-                  placeholder="Enter food rating (1-5)"
+                  placeholder="Food rating (1-5)"
                   value={values.food_rating}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   min="1"
                   max="5"
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-rating-error"
+                  data-testid="food-rating-input"
                 />
                 <ErrorMessage
                   name="food_rating"
                   component="div"
+                  id="food-rating-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
 
               <div>
+                <label htmlFor="food_image" className="sr-only">
+                  Food Image URL
+                </label>
                 <Input
+                  id="food_image"
                   name="food_image"
-                  placeholder="Enter food image URL"
+                  placeholder="Food image URL"
                   value={values.food_image}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="food-image-error"
+                  data-testid="food-image-input"
                 />
                 <ErrorMessage
                   name="food_image"
                   component="div"
+                  id="food-image-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
 
               <div>
+                <label htmlFor="restaurant_name" className="sr-only">
+                  Restaurant Name
+                </label>
                 <Input
+                  id="restaurant_name"
                   name="restaurant_name"
-                  placeholder="Enter restaurant name"
+                  placeholder="Restaurant name"
                   value={values.restaurant_name}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="restaurant-name-error"
+                  data-testid="restaurant-name-input"
                 />
                 <ErrorMessage
                   name="restaurant_name"
                   component="div"
+                  id="restaurant-name-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
 
               <div>
+                <label htmlFor="restaurant_logo" className="sr-only">
+                  Restaurant Logo URL
+                </label>
                 <Input
+                  id="restaurant_logo"
                   name="restaurant_logo"
-                  placeholder="Enter restaurant logo URL"
+                  placeholder="Restaurant logo URL"
                   value={values.restaurant_logo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className="bg-[#F5F5F5]"
+                  className="food-input"
+                  aria-describedby="restaurant-logo-error"
+                  data-testid="restaurant-logo-input"
                 />
                 <ErrorMessage
                   name="restaurant_logo"
                   component="div"
+                  id="restaurant-logo-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
 
-              <div className="bg-[#F5F5F5] ">
+              <div>
+                <label htmlFor="restaurant_status" className="sr-only">
+                  Restaurant Status
+                </label>
                 <Select
                   value={values.restaurant_status}
                   onValueChange={(value) =>
                     setFieldValue("restaurant_status", value)
                   }
                 >
-                  <SelectTrigger id="restaurant_status" className="w-full">
-                    <SelectValue placeholder="Restaurant status (open/close)" />
+                  <SelectTrigger
+                    id="restaurant_status"
+                    className="w-full food-input"
+                    aria-describedby="restaurant-status-error"
+                    data-testid="restaurant-status-select"
+                  >
+                    <SelectValue placeholder="Restaurant status" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="Open Now">Open Now</SelectItem>
@@ -199,6 +245,7 @@ const AddMealModal = () => {
                 <ErrorMessage
                   name="restaurant_status"
                   component="div"
+                  id="restaurant-status-error"
                   className="text-red-500 text-sm mt-1"
                 />
               </div>
@@ -207,18 +254,20 @@ const AddMealModal = () => {
                 <Button
                   type="submit"
                   disabled={postMutation.isPending}
-                  className="w-1/2 text-white font-medium py-3"
+                  className="w-1/2 text-white font-medium py-3 food-btn"
                   style={{
                     background:
                       "linear-gradient(97.86deg, #FFBA26 -8.95%, #FF9A0E 109.24%)",
                   }}
+                  data-testid="food-save-btn"
                 >
                   {postMutation.isPending ? (
                     <>
                       <Loader />
+                      Adding Food...
                     </>
                   ) : (
-                    "Add"
+                    "Save"
                   )}
                 </Button>
                 <DialogClose asChild>
@@ -226,8 +275,8 @@ const AddMealModal = () => {
                     type="button"
                     variant="outline"
                     disabled={postMutation.isPending}
-                    className="w-1/2 border border-[#FFBA26] py-3"
-                    data-close-modal
+                    className="w-1/2 border border-[#FFBA26] py-3 food-btn"
+                    data-testid="food-cancel-btn"
                   >
                     Cancel
                   </Button>
