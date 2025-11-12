@@ -33,7 +33,7 @@ const AddMealModal = () => {
 
   const handleAddFood = async (
     values: AddMealFormValues,
-    { resetForm }: any
+    { resetForm }: { resetForm: () => void }
   ) => {
     try {
       const payload: AddMealPayload = {

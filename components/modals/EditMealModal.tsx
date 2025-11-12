@@ -38,7 +38,7 @@ const EditMealModal = ({ isOpen, onClose, meal }: EditMealModalProps) => {
 
   const handleUpdateFood = async (
     values: AddMealFormValues,
-    { resetForm }: any
+    { resetForm }: { resetForm: () => void }
   ) => {
     try {
       const payload: AddMealPayload = {

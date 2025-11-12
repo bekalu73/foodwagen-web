@@ -31,7 +31,6 @@ const useDynamicMutation = ({
         url,
         method,
         body,
-        headers = {},
         onUploadProgress,
         onDownloadProgress,
       } = options;
