@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
       "encrypted-tbn0.gstatic.com",
       "avatars.githubusercontent.com",
       "fastly.picsum.photos",
+      "tse1.mm.bing.net",
+      "www.google.com",
     ],
   },
 };

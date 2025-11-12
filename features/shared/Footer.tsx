@@ -146,7 +146,7 @@ export default function Footer() {
               placeholder="Enter Your email"
               className="bg-transparent text-sm text-gray-300 px-3 py-2 w-full focus:outline-none"
             />
-            <button className="bg-gradient-to-r from-[#FFBA26] to-[#FF9A0E] text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
+            <button className="bg-gradient-to-r from-[#FFBA26] to-[#FF9A0E] text-white px-4 py-2 text-sm font-semibold hover:opacity-90 transition cursor-pointer">
               Subscribe
             </button>
           </div>
@@ -157,11 +157,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between pt-6 text-xs text-gray-400 space-y-3 md:space-y-0">
         <p>
           All rights reserved ©{" "}
-          <span className="text-white font-medium">Your Company</span>, 2021
+          <span className="text-white font-medium">FoodWagen</span>, 2024
         </p>
         <p>
           Made with 💛 by{" "}
-          <span className="text-[#FF9A0E] font-medium">Themewagon</span>
+          <span className="text-[#FF9A0E] font-medium">Bekalu Sisay</span>
         </p>
       </div>
     </footer>

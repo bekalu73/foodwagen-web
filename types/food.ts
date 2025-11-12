@@ -19,4 +19,5 @@ export interface FoodItem {
   restaurant: Restaurant;
   restaurantName: string;
   status: string;
+  restaurant_status?: string;
 }
